@@ -8,24 +8,12 @@
    <meta name="author" content="">
 
 	<!-- Le styles -->
-	<link href="bootstrap.css" rel="stylesheet">
-	<link href="bootstrap-responsive.css" rel="stylesheet">
-	<link href="inline.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+	<link href="gyro.css" rel="stylesheet">
 	
 	<style> 
-		.box{position:relative;float:left;width:45%;padding:7px;background:#f5f5f5;min-height:160px;}
-		.box2{position:relative;float:left;width:45%;padding:7px;background:#cccccc;}
-		.box.brder,.box2.brder{border-right:1px solid #ddd;padding-right:10px;}
-		.box span,.box strong{display:block;}
-		#compass {width:100%;margin:0 auto;min-height:275px;}
-		#compass.no-sim {min-height:0px;}
-		#compassarrow {position:relative;top:110px;left:150px;width:20px;height:20px;background:#ff0000;-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.4);border:1px solid #000;}
-		#compassarrow {-webkit-border-radius:12px;}
-		#simphone {width:120px;height:190px;background:#2b2b2b;border:1px solid #6b6b6b;-webkit-box-shadow:0 2px 6px rgba(0,0,0,0.4);}
-		#simphone {margin:0 auto;position:relative;top:25px;left:0;right:0;-webkit-border-radius:4px;}
-		.innersim {width:110px;height:150px;background:#c2c3c6;border:1px solid #4b4b4b;-webkit-box-shadow:inset 0 1px 3px rgba(0,0,0,0.3);}
-		.innersim {margin:0 auto;position:relative;top:19px;left:0;right:0;-webkit-border-radius:4px;}
-		hr { margin:10px -10px 8px; }
+		
 	</style>
 	
 	<script> 
@@ -55,36 +43,83 @@
 
 <body>
 	
-	<span id="data-sent-log" style="position:fixed;top:0;left:0;width:100%;display:block;text-align:center;"></span>
+	<span id="data-sent-log" class="nocorners"></span>
 	
-	<div class="container-fluid mln20 mrn20">
+	<div id="main-container" class="container-fluid mln20 mrn20">
+		
 		<div class="row-fluid">
-			<div class="span12 mt15 pl10 pr10 text-center">
-				<h1 class="mb20">Gyro</h1>
-				<hr />
+			<div id="header" class="span12 pl10 pr10 pt5 pb5 mt0 mb0">
+				<h1 class="mb10">Gyro <span id="toggle-buttons" class="pull-right mtn5"><a href="#" id="togglegyro" class="btn btn-success"><i class="icon-off icon-2x"></i></a> <a href="#" id="toggleoptions" class="btn btn-inverse"><i class="icon-reorder icon-2x"></i></a></span></h1>
+				<div class="clear"></div>
+				<!-- Extra Options -->	
+				<div class="hide">
+					<hr class="dark" />
+					<div id="statuslabel-container" class="pull-left">
+						<h6 class="up mb0 mt0"><span class="label nocorners">Status</span><span id="gyrosupport"></span></h6>
+					</div>
+					<div class="pull-right">
+						<h6 id="simphone-degree-container" class="up mb0 mt0 hide">Degree: <span id="simphone-degree">--</span></h6>
+					</div>
+					<div class="clear"></div>
+				</div>
 			</div>
 			
-			<div id="compass" class="span12 pl10 pr10 no-sim">
-				<div class="pull-left">
-					<h6 class="up mb0 mt0">Data output <span id="gyrosupport"></span></h6>
+			<div id="options-bar" class="row hide">
+				<div class="accordion span12 mb0" id="accordion1">
+				  <div class="accordion-group">
+				    <div class="accordion-heading">
+				      <a class="accordion-toggle btn btn-large btn-inverse noborders noshadows bold nocorners text-left span12 up" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+				        Options <i class="icon-angle-down pull-right hide"></i>
+				      </a>
+				    </div>
+				    <div id="collapseOne" class="accordion-body collapse in">
+				      <div class="accordion-inner">
+								<form class="form-vertical pt10">
+									<label for="shake-toggle" class="checkbox bold mb15">
+										<input class="p10" id="shake-toggle" name="shake-toggle" type="checkbox"> <span class="ft16 ml10 lht28">Shake toggle</span>
+									</label>
+									<label for="data-toggle" class="checkbox bold mb15">
+										<input class="p10" id="data-toggle" name="data-toggle" type="checkbox"> <span class="ft16 ml10 lht28">Track data</span>
+									</label>
+									<label for="show-data-toggle" class="checkbox bold mb15">
+										<input class="p10" id="show-data-toggle" name="show-data-toggle" type="checkbox"> <span class="ft16 ml10 lht28">Show data messages</span>
+									</label>
+									<label for="sim-toggle" class="checkbox bold">
+										<input class="p10" id="sim-toggle" name="sim-toggle" type="checkbox"> <span class="ft16 ml10 lht28">Show simulator</span>
+									</label>
+								</form>
+								<p><a href="#" id="resetdata" class="btn btn-large btn-danger span12">Reset Data</a></p>
+				      </div>
+				    </div>
+				  </div>
 				</div>
-				<div class="pull-right">
-					<h6 id="simphone-degree-container" class="up mb0 mt0 hide">Degree: <span id="simphone-degree">--</span>&deg;</h6>
+				
+				<div class="btn-group span12 hide">
+					<a class="btn btn-large span12 dropdown-toggle" data-toggle="dropdown" href="#">
+						Options 
+						<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><input id="shake-toggle" name="shake-toggle" type="checkbox"> Shake toggle</li>
+						<li class="divider"></li>
+						<li><input id="data-toggle" name="data-toggle" type="checkbox"> Track data</li>
+					</ul>
 				</div>
-				
-				<div class="clear"></div>
-				
-				<hr class="mb0" />
-				
+			</div>
+			
+			<div id="compass" class="clear span12 mt10 pl10 pr10 no-sim">
 				<div id="simphone" class="hide">
 					<div class="innersim"></div>
 				</div>
-				
 			</div>
 			
 			<!-- #dataoutput -->
 			<span id="data-error-msg"></span>
 			<div id="data">
+				
+				<div id="shake-alert" class="alert alert-danger alert-block text-center mb0 hide">
+					<h4><i class="icon-bolt icon-spin mr10"></i> Shake! Shake! Shake! <i class="icon-bolt icon-spin ml10"></i></h4>
+				</div>
+				
 				<div id="dataoutput">
 					<div class="box2 brder" id="accelcolor" style="border-bottom:1px solid white;">
 						<strong>Color:</strong>
@@ -117,20 +152,25 @@
 		</div> <!-- .row-fluid -->
 	</div> <!-- .container-fluid -->
 	
-	<!-- Toggle Button for Testing -->
-	<div class="container-fluid mt20 mln20">
-		<div class="row-fluid pl10">
-			<div id="toggle-buttons">
-				<a href="#" id="togglesim" class="btn btn-inverse btn-large pt15 pb15">Show Simulator</a>
-				<a href="#" id="togglegyro" class="btn btn-success btn-large pt15 pb15 right">Start Gyro</a>
-			</div>
-			<br />
-			<span id="console-output"></span>
+	<div class="navbar navbar-fixed-bottom mb0">
+		<div class="navbar-inner pagination-centered mb0">
+		<div class="btn-group bold">
+			<a href="https://twitter.com/share" class="btn" data-related="josephjames" data-lang="en"><i class="icon-twitter"></i> Tweet</a>
+			<a href="http://www.facebook.com/sharer.php?u=http://joseph-jam.es/gyro/" class="btn"><i class="icon-facebook-sign"></i> Like</a>
+			<a href="https://github.com/joeymarburger/gyro/star" class="btn"><i class="icon-github"></i> Star</a>
+			<a href="https://github.com/joeymarburger/gyro/fork" class="btn"><i class="icon-github"></i> Fork</a>
+		</div>
 		</div>
 	</div>
+	<span id="console-output"></span>
+
+<!-- Tweet Button -->	
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 <!-- Core JS Include -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script src="gyro-data.js"></script>
 <script src="gyro.js"></script>
 </body>
 </html>
