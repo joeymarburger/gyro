@@ -346,6 +346,7 @@ $(function(){
 	if (window.DeviceMotionEvent && isMobile) {
 		initializePlatform();
 	} else {
+		alert('asdf');
 		document.getElementById("gyrosupport").innerHTML = '<span class="label label-important">Not Supported</span>';
 	}
 
