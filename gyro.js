@@ -346,8 +346,9 @@ $(function(){
 	if (window.DeviceMotionEvent && isMobile) {
 		initializePlatform();
 	} else {
-		alert('asdf');
-		document.getElementById("gyrosupport").innerHTML = '<span class="label label-important">Not Supported</span>';
+		document.getElementById("gyrosupport").innerHTML = '<span class="label label-important">Error</span>';
+		document.getElementById("data").innerHTML = '<div class="text-center alert alert-danger"><h3>Device or browser not supported.</h3></div>';
+		document.getElementById("toggle-buttons").style.visibility = 'hidden';
 	}
 
 }); // Close main function
