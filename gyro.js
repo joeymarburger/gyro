@@ -21,8 +21,8 @@ $(function(){
 	// Global variables
 	var $gyro,
 	gyroInterval,
-	current = 0,
-	threshhold = 20,
+	current = 0, // Controls the loop against the threshhold to tune data output
+	threshhold = 20, // How often data is displayed, not for data sending
 	gyrox = 0,
 	gyroy = 0,
 	gyroz = 0,
@@ -44,9 +44,6 @@ $(function(){
 	gyroenabletilt = false,
 	gyroplane,
 	gyrosimdegree,
-	sendGyroData,
-	datasamplerate = 0,
-	datainterval,
 	rotateSim,
 	makeGyroColor,
 	makeAcceleratedColor,
@@ -54,7 +51,9 @@ $(function(){
 	gyroh2d,
 	gyroactive = false,
 	simactive = false,
-	trackdata = false,
+	trackdata = false, // Change this to true to enable data capturing
+	datasamplerate = 0, // Change this to enable data capturing
+	sendGyroData, // The function to handle data capturing via ajax or whatever
 	gyroMotionHandler,
 	gyroOrientationHandler,
 	toggleGyro,
@@ -120,11 +119,6 @@ $(function(){
 			gyroactive = true;
 			document.getElementById("gyrosupport").innerHTML = '<span class="label label-success">On</span>';
 			document.getElementById("togglegyro").innerHTML = 'Stop Gyro';
-			
-			// Test data collection
-			trackdata = true;
-			datasamplerate = 5000;
-			//sendGyroData();
 			
 			trackOrientation();
 			
