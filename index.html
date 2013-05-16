@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Gyro</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=1.0">
+   <meta name="description" content="">
+   <meta name="author" content="">
+
+	<!-- Le styles -->
+	<link href="bootstrap.css" rel="stylesheet">
+	<link href="bootstrap-responsive.css" rel="stylesheet">
+	<link href="inline.css" rel="stylesheet">
+	
+	<style> 
+		.box{position:relative;float:left;width:45%;padding:7px;background:#f5f5f5;min-height:160px;}
+		.box2{position:relative;float:left;width:45%;padding:7px;background:#cccccc;}
+		.box.brder,.box2.brder{border-right:1px solid #ddd;padding-right:10px;}
+		.box span,.box strong{display:block;}
+		#compass {width:100%;margin:0 auto;min-height:275px;}
+		#compass.no-sim {min-height:0px;}
+		#compassarrow {position:relative;top:110px;left:150px;width:20px;height:20px;background:#ff0000;-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.4);border:1px solid #000;}
+		#compassarrow {-webkit-border-radius:12px;}
+		#simphone {width:120px;height:190px;background:#2b2b2b;border:1px solid #6b6b6b;-webkit-box-shadow:0 2px 6px rgba(0,0,0,0.4);}
+		#simphone {margin:0 auto;position:relative;top:25px;left:0;right:0;-webkit-border-radius:4px;}
+		.innersim {width:110px;height:150px;background:#c2c3c6;border:1px solid #4b4b4b;-webkit-box-shadow:inset 0 1px 3px rgba(0,0,0,0.3);}
+		.innersim {margin:0 auto;position:relative;top:19px;left:0;right:0;-webkit-border-radius:4px;}
+		hr { margin:10px -10px 8px; }
+	</style>
+	
+	<script> 
+      var isMobile = {
+          Android: function() {
+              return navigator.userAgent.match(/Android/i);
+          },
+          BlackBerry: function() {
+              return navigator.userAgent.match(/BlackBerry/i);
+          },
+          iOS: function() {
+              return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+          },
+          Opera: function() {
+              return navigator.userAgent.match(/Opera Mini/i);
+          },
+          Windows: function() {
+              return navigator.userAgent.match(/IEMobile/i);
+          },
+          any: function() {
+              return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+          }
+      };
+  </script>
+	
+</head>
+
+<body>
+	
+	<span id="data-sent-log" style="position:fixed;top:0;left:0;width:100%;display:block;text-align:center;"></span>
+	
+	<div class="container-fluid mln20 mrn20">
+		<div class="row-fluid">
+			<div class="span12 mt15 pl10 pr10 text-center">
+				<h1 class="mb20">Gyro</h1>
+				<hr />
+			</div>
+			
+			<div id="compass" class="span12 pl10 pr10 no-sim">
+				<div class="pull-left">
+					<h6 class="up mb0 mt0">Data output <span id="gyrosupport"></span></h6>
+				</div>
+				<div class="pull-right">
+					<h6 id="simphone-degree-container" class="up mb0 mt0 hide">Degree: <span id="simphone-degree">--</span>&deg;</h6>
+				</div>
+				
+				<div class="clear"></div>
+				
+				<hr class="mb0" />
+				
+				<div id="simphone" class="hide">
+					<div class="innersim"></div>
+				</div>
+				
+			</div>
+			
+			<!-- #dataoutput -->
+			<div id="data">
+				<div id="dataoutput">
+					<div class="box2 brder" id="accelcolor" style="border-bottom:1px solid white;">
+						<strong>Color:</strong>
+					</div>
+					<div class="box2" id="gyrocolor" style="border-bottom:1px solid white;">
+						<strong>Color:</strong>
+					</div>
+					<div class="box brder" id="accel">
+						<strong>Accelerometer</strong>
+						<span id="xlabel"></span>
+						<span id="ylabel"></span>
+						<span id="zlabel"></span>
+						<span id="arAlphaLabel"></span> 
+						<span id="arBetaLabel"></span> 
+						<span id="arGammaLabel"></span>
+					</div>
+					<div class="box" id="gyro">
+						<strong>Gyroscope</strong> 
+						<span id="alphalabel"></span> 
+						<span id="betalabel"></span> 
+						<span id="gammalabel"></span> 
+						<span id="ilabel"></span>
+						
+						<strong class="mt5">Orientation</strong> 
+						<span id="orientationlabel"></span>
+					</div>
+				</div>
+			</div>
+			
+		</div> <!-- .row-fluid -->
+	</div> <!-- .container-fluid -->
+	
+	<!-- Toggle Button for Testing -->
+	<div class="container-fluid mt20 mln20">
+		<div class="row-fluid pl10">
+			<div class="toggle-buttons">
+				<a href="#" id="togglesim" class="btn btn-inverse btn-large pt15 pb15">Show Simulator</a>
+				<a href="#" id="togglegyro" class="btn btn-success btn-large pt15 pb15 right">Start Gyro</a>
+			</div>
+			<br />
+			<span id="console-output"></span>
+		</div>
+	</div>
+
+<!-- Core JS Include -->
+<script src="../../voltron/js/vendor/jquery.js"></script>
+<script src="gyro.js"></script>
+</body>
+</html>
